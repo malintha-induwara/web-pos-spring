@@ -19,7 +19,6 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = "lk.ijse.gdse68.webposspring")
-@EnableWebMvc
 @EnableJpaRepositories(basePackages = "lk.ijse.gdse68.webposspring")
 @EnableTransactionManagement
 public class WebAppRootConfig {
@@ -33,7 +32,7 @@ public class WebAppRootConfig {
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/notetake?createDatabaseIfNotExist=true");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/webPos?createDatabaseIfNotExist=true");
         dataSource.setUsername("root");
         dataSource.setPassword("Syrex@1234");
         return dataSource;
