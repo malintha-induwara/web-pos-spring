@@ -22,7 +22,7 @@ public class Item {
     private double price;
     private int quantity;
     private String category;
-    private String imgName;
+    private String image;
 
     @OneToMany(mappedBy = "items")
     private Set<OrderDetail> orderDetails;

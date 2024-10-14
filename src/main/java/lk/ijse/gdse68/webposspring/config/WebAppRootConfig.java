@@ -2,6 +2,7 @@ package lk.ijse.gdse68.webposspring.config;
 
 
 import jakarta.persistence.EntityManagerFactory;
+import lk.ijse.gdse68.webposspring.util.ImageUtil;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,6 +27,11 @@ public class WebAppRootConfig {
     @Bean
     public ModelMapper modelMapper(){
         return new ModelMapper();
+    }
+
+    @Bean
+    public ImageUtil imageUtil(){
+        return new ImageUtil();
     }
 
     @Bean
@@ -56,6 +62,5 @@ public class WebAppRootConfig {
         jpaTransactionManager.setEntityManagerFactory(managerFactory);
         return  jpaTransactionManager;
     }
-
 }
 

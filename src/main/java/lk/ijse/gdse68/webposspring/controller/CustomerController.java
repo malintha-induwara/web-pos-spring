@@ -72,7 +72,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping( value = "/allCustomers", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<CustomerDTO>> getAllCustomers() {
         try {
             List<CustomerDTO> allCustomers = customerService.getAllCustomers();
