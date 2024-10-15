@@ -2,15 +2,19 @@ package lk.ijse.gdse68.webposspring.util;
 
 import lk.ijse.gdse68.webposspring.dto.CustomerDTO;
 import lk.ijse.gdse68.webposspring.dto.ItemDTO;
-import lk.ijse.gdse68.webposspring.entity.Customer;
-import lk.ijse.gdse68.webposspring.entity.Item;
+import lk.ijse.gdse68.webposspring.dto.OrderDTO;
+import lk.ijse.gdse68.webposspring.dto.OrderDetailDTO;
+import lk.ijse.gdse68.webposspring.entity.*;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class Mapping {
@@ -48,5 +52,6 @@ public class Mapping {
     public Item convertToItemEntity(ItemDTO<MultipartFile> itemDTO) {
         return modelMapper.map(itemDTO, Item.class);
     }
+
 }
 

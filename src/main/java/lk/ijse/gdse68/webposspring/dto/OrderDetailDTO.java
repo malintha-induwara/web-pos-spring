@@ -1,20 +1,18 @@
 package lk.ijse.gdse68.webposspring.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ItemDTO<T> implements Serializable {
+public class OrderDetailDTO implements Serializable {
     private String itemId;
-    private String itemName;
-    private double price;
     private int quantity;
-    private String category;
-    private T image;
+    private double price;
 }
 
