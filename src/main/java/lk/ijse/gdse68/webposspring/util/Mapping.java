@@ -57,5 +57,9 @@ public class Mapping {
     public OrderDTO convertToOrderDTO(Optional<Orders> orders) {
         return modelMapper.map(orders, OrderDTO.class);
     }
+
+    public List<OrderDTO> convertToOrderDTOList(List<Orders> allOrders) {
+        return modelMapper.map(allOrders,new TypeToken<List<OrderDTO>>(){}.getType());
+    }
 }
 

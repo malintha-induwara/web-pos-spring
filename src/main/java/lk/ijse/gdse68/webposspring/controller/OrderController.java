@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -54,6 +55,16 @@ public class OrderController {
             return ResponseEntity.ok(orderDTO);
         }catch (OrderNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping(path = "/allOrders", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OrderDTO>> getAllOrders(){
+        try{
+            List<OrderDTO> allOrders = orderService.getAllOrders();
+            return ResponseEntity.ok(allOrders);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

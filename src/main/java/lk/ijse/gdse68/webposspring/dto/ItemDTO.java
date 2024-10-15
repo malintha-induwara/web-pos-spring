@@ -1,14 +1,14 @@
 package lk.ijse.gdse68.webposspring.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class ItemDTO<T> implements Serializable {
     private String itemId;
     private String itemName;

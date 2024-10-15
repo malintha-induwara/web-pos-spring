@@ -1,8 +1,6 @@
 package lk.ijse.gdse68.webposspring.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -10,6 +8,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Getter
+@Setter
 public class OrderDetailDTO implements Serializable {
     private String itemId;
     private int quantity;

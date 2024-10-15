@@ -25,7 +25,6 @@ import java.util.*;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-
     private final OrderRepository orderRepository;
 
     private final CustomerRepository customerRepository;
@@ -115,6 +114,12 @@ public class OrderServiceImpl implements OrderService {
         }
         orderId.put("orderId","O001");
         return orderId;
+    }
+
+    @Override
+    public List<OrderDTO> getAllOrders() {
+        List<Orders> allOrders = orderRepository.findAll();
+        return mapping.convertToOrderDTOList(allOrders);
     }
 }
 
