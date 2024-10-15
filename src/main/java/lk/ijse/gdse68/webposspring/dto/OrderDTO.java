@@ -14,9 +14,9 @@ import java.util.List;
 @Data
 public class OrderDTO implements Serializable {
     private String orderId;
-    private LocalDateTime dateAndTime ;
+    private LocalDateTime orderTimeAndDate ;
     private String customerId;
-    private double subtotal;
+    private double subTotal;
     private double discount;
     private double amountPayed;
     private List<OrderDetailDTO> orderDetails;

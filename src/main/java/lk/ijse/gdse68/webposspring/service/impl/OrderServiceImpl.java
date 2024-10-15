@@ -6,19 +6,18 @@ import lk.ijse.gdse68.webposspring.entity.*;
 import lk.ijse.gdse68.webposspring.exception.CustomerNotFoundException;
 import lk.ijse.gdse68.webposspring.exception.DataPersistFailedException;
 import lk.ijse.gdse68.webposspring.exception.ItemNotFoundException;
+import lk.ijse.gdse68.webposspring.exception.OrderNotFoundException;
 import lk.ijse.gdse68.webposspring.repository.CustomerRepository;
 import lk.ijse.gdse68.webposspring.repository.ItemRepository;
 import lk.ijse.gdse68.webposspring.repository.OrderRepository;
 import lk.ijse.gdse68.webposspring.service.OrderService;
+import lk.ijse.gdse68.webposspring.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 
 @Transactional
@@ -33,10 +32,10 @@ public class OrderServiceImpl implements OrderService {
 
     private final ItemRepository itemRepository;
 
+    private final Mapping mapping;
 
     @Override
     public void placeOrder(OrderDTO orderDTO) {
-
         Optional<Customer> customer = customerRepository.findById(orderDTO.getCustomerId());
 
         if (customer.isEmpty()) {
@@ -60,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
         orders.setOrderTimeAndDate(LocalDateTime.now());
         orders.setCustomer(customer);
         orders.setAmountPayed(orderDTO.getAmountPayed());
-        orders.setSubTotal(orderDTO.getSubtotal());
+        orders.setSubTotal(orderDTO.getSubTotal());
         orders.setDiscount(orderDTO.getDiscount());
         return orders;
     }
@@ -94,7 +93,28 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO searchOrder(String orderId) {
-        return null;
+        if (orderRepository.existsById(orderId)){
+            return mapping.convertToOrderDTO(orderRepository.findById(orderId));
+        }else {
+            throw  new OrderNotFoundException("Order Not Found");
+        }
+    }
+
+    @Override
+    public Map<String,String> getOrderId() {
+        Optional<Orders> lastOrder = orderRepository.findTopByOrderByOrderIdDesc();
+        Map<String,String>  orderId = new HashMap<>();
+        if (lastOrder.isPresent()){
+            String lastOrderId = lastOrder.get().getOrderId();
+            String prefix = lastOrderId.substring(0, 1);
+            int number = Integer.parseInt(lastOrderId.substring(1));
+            number++;
+            String formattedNumber = String.format("%03d", number);
+            orderId.put("orderId",prefix + formattedNumber);
+            return orderId;
+        }
+        orderId.put("orderId","O001");
+        return orderId;
     }
 }
 

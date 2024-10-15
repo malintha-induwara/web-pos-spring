@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Component
@@ -53,5 +54,8 @@ public class Mapping {
         return modelMapper.map(itemDTO, Item.class);
     }
 
+    public OrderDTO convertToOrderDTO(Optional<Orders> orders) {
+        return modelMapper.map(orders, OrderDTO.class);
+    }
 }
 
