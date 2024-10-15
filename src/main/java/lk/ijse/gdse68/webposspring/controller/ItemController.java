@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/item")
+@CrossOrigin("*")
 public class ItemController {
 
     private static final Logger logger = LoggerFactory.getLogger(ItemController.class);

@@ -19,6 +19,7 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/order")
+@CrossOrigin("*")
 public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
