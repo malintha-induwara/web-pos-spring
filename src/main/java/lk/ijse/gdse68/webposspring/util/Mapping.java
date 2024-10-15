@@ -3,19 +3,17 @@ package lk.ijse.gdse68.webposspring.util;
 import lk.ijse.gdse68.webposspring.dto.CustomerDTO;
 import lk.ijse.gdse68.webposspring.dto.ItemDTO;
 import lk.ijse.gdse68.webposspring.dto.OrderDTO;
-import lk.ijse.gdse68.webposspring.dto.OrderDetailDTO;
-import lk.ijse.gdse68.webposspring.entity.*;
+import lk.ijse.gdse68.webposspring.entity.Customer;
+import lk.ijse.gdse68.webposspring.entity.Item;
+import lk.ijse.gdse68.webposspring.entity.Orders;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Component
 public class Mapping {
@@ -43,11 +41,13 @@ public class Mapping {
     }
 
     public ItemDTO<String> convertToItemDTO(Item item) {
-        return modelMapper.map(item, new TypeToken<ItemDTO<String>>(){}.getType());
+        return modelMapper.map(item, new TypeToken<ItemDTO<String>>() {
+        }.getType());
     }
 
     public List<ItemDTO<String>> convertToItemDTOList(List<Item> items) {
-        return modelMapper.map(items, new TypeToken<List<ItemDTO<String>>>() {}.getType());
+        return modelMapper.map(items, new TypeToken<List<ItemDTO<String>>>() {
+        }.getType());
     }
 
     public Item convertToItemEntity(ItemDTO<MultipartFile> itemDTO) {
@@ -59,7 +59,8 @@ public class Mapping {
     }
 
     public List<OrderDTO> convertToOrderDTOList(List<Orders> allOrders) {
-        return modelMapper.map(allOrders,new TypeToken<List<OrderDTO>>(){}.getType());
+        return modelMapper.map(allOrders, new TypeToken<List<OrderDTO>>() {
+        }.getType());
     }
 }
 

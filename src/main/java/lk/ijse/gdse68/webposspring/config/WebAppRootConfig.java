@@ -14,7 +14,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 
@@ -25,17 +24,17 @@ import javax.sql.DataSource;
 public class WebAppRootConfig {
 
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 
     @Bean
-    public ImageUtil imageUtil(){
+    public ImageUtil imageUtil() {
         return new ImageUtil();
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/webPos?createDatabaseIfNotExist=true");
@@ -46,7 +45,7 @@ public class WebAppRootConfig {
 
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(true);
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -57,10 +56,10 @@ public class WebAppRootConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory managerFactory){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory managerFactory) {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
         jpaTransactionManager.setEntityManagerFactory(managerFactory);
-        return  jpaTransactionManager;
+        return jpaTransactionManager;
     }
 }
 

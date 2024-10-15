@@ -1,7 +1,10 @@
 package lk.ijse.gdse68.webposspring.dto;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -13,7 +16,7 @@ import java.util.List;
 @Setter
 public class OrderDTO implements Serializable {
     private String orderId;
-    private LocalDateTime orderTimeAndDate ;
+    private LocalDateTime orderTimeAndDate;
     private String customerId;
     private double subTotal;
     private double discount;

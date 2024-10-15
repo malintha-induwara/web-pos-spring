@@ -39,33 +39,33 @@ public class OrderController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String,String>> getOrderId(){
-        try{
+    public ResponseEntity<Map<String, String>> getOrderId() {
+        try {
             Map<String, String> orderId = orderService.getOrderId();
             return ResponseEntity.status(HttpStatus.OK).body(orderId);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @GetMapping(path = "/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderDTO> searchOrder(@PathVariable("orderId") String orderId){
+    public ResponseEntity<OrderDTO> searchOrder(@PathVariable("orderId") String orderId) {
         try {
             OrderDTO orderDTO = orderService.searchOrder(orderId);
             return ResponseEntity.ok(orderDTO);
-        }catch (OrderNotFoundException e){
+        } catch (OrderNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @GetMapping(path = "/allOrders", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<OrderDTO>> getAllOrders(){
-        try{
+    public ResponseEntity<List<OrderDTO>> getAllOrders() {
+        try {
             List<OrderDTO> allOrders = orderService.getAllOrders();
             return ResponseEntity.ok(allOrders);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

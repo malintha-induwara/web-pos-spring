@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
         Optional<Customer> tempCustomer = customerRepository.findById(customerDTO.getCustomerId());
         if (tempCustomer.isPresent()) {
             throw new CustomerAlreadyExistsException("Customer already exists");
-        }else {
+        } else {
             try {
                 customerRepository.save(mapping.convertToCustomerEntity(customerDTO));
             } catch (Exception e) {

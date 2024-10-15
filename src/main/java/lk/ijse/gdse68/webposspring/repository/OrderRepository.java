@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface OrderRepository  extends JpaRepository<Orders, String> {
+public interface OrderRepository extends JpaRepository<Orders, String> {
     Optional<Orders> findTopByOrderByOrderIdDesc();
 }

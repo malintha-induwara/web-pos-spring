@@ -45,16 +45,16 @@ public class ItemController {
     }
 
 
-    @PutMapping( path = "/{itemId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(path = "/{itemId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateItem(@PathVariable("itemId") String itemId,
-            @RequestPart("itemName") String itemName,
-            @RequestPart("price") String price,
-            @RequestPart("quantity") String quantity,
-            @RequestPart("category") String category,
-            @RequestPart("image") MultipartFile image
+                                           @RequestPart("itemName") String itemName,
+                                           @RequestPart("price") String price,
+                                           @RequestPart("quantity") String quantity,
+                                           @RequestPart("category") String category,
+                                           @RequestPart("image") MultipartFile image
     ) {
         try {
-            ItemDTO<MultipartFile> itemDTO= new ItemDTO<>(itemId, itemName, Double.parseDouble(price), Integer.parseInt(quantity), category, image);
+            ItemDTO<MultipartFile> itemDTO = new ItemDTO<>(itemId, itemName, Double.parseDouble(price), Integer.parseInt(quantity), category, image);
             itemService.updateItem(itemId, itemDTO);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (ItemAlreadyExistsException e) {
@@ -70,14 +70,13 @@ public class ItemController {
     public ResponseEntity<Void> deleteItem(@PathVariable("itemId") String itemId) {
         if (itemId == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }else {
+        } else {
             try {
                 itemService.deleteItem(itemId);
                 return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-            } catch (ItemNotFoundException e){
+            } catch (ItemNotFoundException e) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
         }

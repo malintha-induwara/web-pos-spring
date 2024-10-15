@@ -29,10 +29,9 @@ public class CustomerController {
             try {
                 customerService.saveCustomer(customerDTO);
                 return ResponseEntity.status(HttpStatus.CREATED).build();
-            }catch (CustomerAlreadyExistsException e) {
+            } catch (CustomerAlreadyExistsException e) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).build();
-            }
-            catch (DataPersistFailedException e) {
+            } catch (DataPersistFailedException e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -41,7 +40,7 @@ public class CustomerController {
     }
 
     @PutMapping(path = "/{customerId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateCustomer(@PathVariable("customerId")String customerId, @RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<Void> updateCustomer(@PathVariable("customerId") String customerId, @RequestBody CustomerDTO customerDTO) {
         if (customerId == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
@@ -56,8 +55,8 @@ public class CustomerController {
         }
     }
 
-    @GetMapping(value ="/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CustomerDTO> searchCustomer(@PathVariable("customerId")String customerId) {
+    @GetMapping(value = "/{customerId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CustomerDTO> searchCustomer(@PathVariable("customerId") String customerId) {
         if (customerId == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
@@ -83,9 +82,8 @@ public class CustomerController {
     }
 
 
-
     @DeleteMapping(path = "/{customerId}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable("customerId")String customerId) {
+    public ResponseEntity<Void> deleteCustomer(@PathVariable("customerId") String customerId) {
         if (customerId == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
@@ -99,7 +97,6 @@ public class CustomerController {
             }
         }
     }
-
 
 
 }

@@ -92,11 +92,11 @@ public class ItemServiceImpl implements ItemService {
         List<Item> items = itemRepository.findAll();
         List<ItemDTO<String>> itemDTOS = mapping.convertToItemDTOList(items);
         for (ItemDTO<String> itemDTO : itemDTOS) {
-           items.stream().filter(item ->
-                   item.getItemId().equals(itemDTO.getItemId()))
-                   .findFirst()
-                   .ifPresent(item ->
-                           itemDTO.setImage(imageUtil.getImage(item.getImage())));
+            items.stream().filter(item ->
+                            item.getItemId().equals(itemDTO.getItemId()))
+                    .findFirst()
+                    .ifPresent(item ->
+                            itemDTO.setImage(imageUtil.getImage(item.getImage())));
         }
         return itemDTOS;
     }

@@ -73,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Set<OrderDetail> saveOrderDetailsAndUpdateItems(Orders orders, List<OrderDetailDTO> orderDetailDTOList) {
-        List<OrderDetail> orderDetailList= orderDetailDTOList.stream().map(orderDetailDto -> {
+        List<OrderDetail> orderDetailList = orderDetailDTOList.stream().map(orderDetailDto -> {
             Optional<Item> item = itemRepository.findById(orderDetailDto.getItemId());
 
             if (item.isEmpty()) {
@@ -92,27 +92,27 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO searchOrder(String orderId) {
-        if (orderRepository.existsById(orderId)){
+        if (orderRepository.existsById(orderId)) {
             return mapping.convertToOrderDTO(orderRepository.findById(orderId));
-        }else {
-            throw  new OrderNotFoundException("Order Not Found");
+        } else {
+            throw new OrderNotFoundException("Order Not Found");
         }
     }
 
     @Override
-    public Map<String,String> getOrderId() {
+    public Map<String, String> getOrderId() {
         Optional<Orders> lastOrder = orderRepository.findTopByOrderByOrderIdDesc();
-        Map<String,String>  orderId = new HashMap<>();
-        if (lastOrder.isPresent()){
+        Map<String, String> orderId = new HashMap<>();
+        if (lastOrder.isPresent()) {
             String lastOrderId = lastOrder.get().getOrderId();
             String prefix = lastOrderId.substring(0, 1);
             int number = Integer.parseInt(lastOrderId.substring(1));
             number++;
             String formattedNumber = String.format("%03d", number);
-            orderId.put("orderId",prefix + formattedNumber);
+            orderId.put("orderId", prefix + formattedNumber);
             return orderId;
         }
-        orderId.put("orderId","O001");
+        orderId.put("orderId", "O001");
         return orderId;
     }
 
